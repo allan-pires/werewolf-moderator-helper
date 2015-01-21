@@ -72,7 +72,7 @@ public class PlayersQuantityActivity extends ActionBarActivity {
             // Se tiver mais de 4 jogadores, continua, senão...
             if (quantidade_int > 4) {
 
-                if (quantidade_int < 68) {
+                if (quantidade_int <= 68) {
                     // Cria um intent da prox Activity
                     Intent intent = new Intent(this, SelectClassesActivity.class);
 
