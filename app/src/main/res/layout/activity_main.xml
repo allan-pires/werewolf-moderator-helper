@@ -1,0 +1,55 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/start_screen_app"
+    android:screenOrientation="portrait"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Novo jogo"
+        android:id="@+id/new_game_button"
+        android:background="@android:color/transparent"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:shadowColor="@android:color/transparent"
+        android:textSize="64dp"
+        android:clickable="true"
+        android:layout_above="@+id/options_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="goToPlayersQuantityActivity" />
+
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Opções"
+        android:id="@+id/options_button"
+        android:background="@android:color/transparent"
+        android:shadowColor="@android:color/transparent"
+        android:textSize="64dp"
+        android:clickable="true"
+        android:layout_above="@+id/exit_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sair"
+        android:id="@+id/exit_button"
+        android:background="@android:color/transparent"
+        android:shadowColor="@android:color/transparent"
+        android:textSize="64dp"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp" />
+
+</RelativeLayout>

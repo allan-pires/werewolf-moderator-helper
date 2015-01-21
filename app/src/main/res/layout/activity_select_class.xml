@@ -1,0 +1,280 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/classpick"
+    android:screenOrientation="portrait"
+    tools:context="doistres.werewolf.SelectClassesActivity"
+    android:id="@+id/container">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SELEÇÃO DE CLASSES"
+        android:id="@+id/class_select_text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="42dp"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CLASSES OBRIGATÓRIAS"
+        android:id="@+id/text_standart_classes"
+        android:textSize="24dp"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/class_select_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="1"
+        android:layout_below="@+id/text_standart_classes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/grid_standart_classes">
+
+        <ToggleButton
+        android:id="@+id/toggle_lobisomem"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/check_lobisomem"
+        android:textOn=""
+        android:textOff=""
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:checked="true"
+        android:clickable="false"
+        android:layout_below="@+id/text_standart_classes"
+        android:layout_alignLeft="@+id/text_standart_classes"
+        android:layout_alignStart="@+id/text_standart_classes"
+        android:layout_margin="10dp"/>
+
+        <ToggleButton
+        android:id="@+id/toggle_campones"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/check_campones"
+        android:textOn=""
+        android:textOff=""
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:checked="true"
+        android:clickable="false"
+        android:gravity="center"
+        android:layout_above="@+id/text_optional_classes"
+        android:layout_toRightOf="@+id/toggle_lobisomem"
+        android:layout_toEndOf="@+id/toggle_lobisomem"
+            android:layout_margin="10dp"
+            android:text="Camponês" />
+
+        <ToggleButton
+        android:id="@+id/toggle_vidente"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/check_vidente"
+        android:textOn=""
+        android:textOff=""
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:checked="true"
+        android:clickable="false"
+        android:layout_above="@+id/text_optional_classes"
+        android:layout_toRightOf="@+id/toggle_campones"
+        android:layout_toEndOf="@+id/toggle_campones"
+            android:layout_margin="10dp"
+            android:text="Vidente" />
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CLASSES OPCIONAIS"
+        android:id="@+id/text_optional_classes"
+        android:textSize="24dp"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/grid_standart_classes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_optional_classes"
+        android:id="@+id/grid_optional_classes"
+        android:rowCount="3"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ToggleButton
+            android:id="@+id/toggle_cupido"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_cupido"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toLeftOf="@+id/toggle_campones"
+            android:layout_toStartOf="@+id/toggle_campones"
+            android:layout_margin="10dp"
+            android:text="Cupido" />
+
+
+        <ToggleButton
+            android:id="@+id/toggle_cacador"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_cacador"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Caçador" />
+
+        <ToggleButton
+            android:id="@+id/toggle_garotinha"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_garotinha"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Garotinha" />
+
+        <ToggleButton
+            android:id="@+id/toggle_bruxa"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_bruxa"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Bruxa" />
+
+        <ToggleButton
+            android:id="@+id/toggle_lobisomem_alfa"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_lobisomem_alfa"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Lobisomem Alfa" />
+
+        <ToggleButton
+            android:id="@+id/toggle_traidor"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_traidor"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Traidor" />
+
+        <ToggleButton
+            android:id="@+id/toggle_silenciador"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_silenciador"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Silenciador" />
+
+        <ToggleButton
+            android:id="@+id/toggle_mago"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/check_mago"
+            android:textOn=""
+            android:textOff=""
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:checked="false"
+            android:clickable="true"
+            android:layout_below="@+id/text_optional_classes"
+            android:layout_toRightOf="@+id/grid_optional_classes"
+            android:layout_toEndOf="@+id/grid_optional_classes"
+            android:layout_margin="10dp"
+            android:text="Mago" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMEÇAR >"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:textColor="#ffffffff"
+            android:layout_gravity="bottom|right"
+            android:textSize="36dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/button_start"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:onClick="goToGameSetupConfirmationActivity" />
+
+
+    </GridLayout>
+
+</RelativeLayout>
