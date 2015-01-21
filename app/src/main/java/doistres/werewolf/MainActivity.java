@@ -63,15 +63,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void main(String[] args){
-        Role lobisomem = new Role("Lobisomem", "Mate um camponês a cada noite");
-        Role campones = new Role("Camponês", "Descubra quem é o lobisomem e ponha-o na fogueira!");
-        Role vidente = new Role("Vidente", "Toda noite aponte para um jogador para saber se ele é lobisomem ou não");
-        Role cupido = new Role("Cupido", "Escolha dois jogadores para serem amantes. Se um deles morrer, o outro morre de amor");
-        Role cacador = new Role("Caçador", "Se for morto, não morra sozinho, aponte para algum jogador e leve-o com você");
-        Role garotinha = new Role("Garotinha", "Pode espiar durante a noite, mas se for vista pelos lobisomens, morre de medo");
-        Role bruxa = new Role("Bruxa", "Mate ou cure um jogador durante a noite, uma vez por jogo");
-        Role lobisomem_alfa = new Role("Lobisomem Alfa", "Escolha um jogador para se transformar em Lobisomem");
-        Role traidor = new Role("Traidor", "Ganhe se os Lobisomens ganharem");
-        Role silenciador = new Role ("Silenciador", "Durante a noite, escolha um jogador para ficar calado no próximo dia");
+
     }
 }

@@ -72,16 +72,27 @@ public class PlayersQuantityActivity extends ActionBarActivity {
             // Se tiver mais de 4 jogadores, continua, senão...
             if (quantidade_int > 4) {
 
-                // Cria um intent da prox Activity
-                Intent intent = new Intent(this, SelectClassesActivity.class);
+                if (quantidade_int < 68) {
+                    // Cria um intent da prox Activity
+                    Intent intent = new Intent(this, SelectClassesActivity.class);
 
-                // Cria mensagem para enviar para prox Activity (quantidade de jogadores)
+                    // Cria mensagem para enviar para prox Activity (quantidade de jogadores)
 
-                String message = quantidade.getText().toString();
-                intent.putExtra("foo", message);
+                    String message = quantidade.getText().toString();
+                    intent.putExtra("foo", message);
 
-                // Inicia prox Activity
-                startActivity(intent);
+                    // Inicia prox Activity
+                    startActivity(intent);
+                }
+                else new AlertDialog.Builder(this)
+                        .setMessage("Tá exaltado, fera? O número máximo de jogadores é 68.")
+                        .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
 
             // Msg de erro

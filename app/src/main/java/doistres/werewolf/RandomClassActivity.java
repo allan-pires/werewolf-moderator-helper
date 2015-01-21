@@ -3,6 +3,7 @@ package doistres.werewolf;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ import java.util.Random;
 
 
 public class RandomClassActivity extends ActionBarActivity {
-    ArrayList classes_array = new ArrayList();
+    ArrayList<Role> classes_array = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,21 @@ public class RandomClassActivity extends ActionBarActivity {
         // Torna a Activity visível
         setContentView(R.layout.activity_random_class);
 
+        // Muda a fonte dos textos para AMATIC
+        Typeface amatic = Typeface.createFromAsset(getAssets(), "amatic.ttf");
+        TextView text = (TextView) findViewById(R.id.text_player_class);
+        Button prox = (Button) findViewById(R.id.button_select_class);
+        text.setTypeface(amatic);
+        prox.setTypeface(amatic);
+
         // Recebe mensagem da Activity anterior (quantidade de jogadores)
         Intent intent = getIntent();
-        classes_array = intent.getStringArrayListExtra("classes");
+        ArrayList<Role> classes_array_parcelable = intent.getParcelableArrayListExtra("roles");
+        for (int i = 0; i < classes_array_parcelable.size (); i++)
+        {
+            Role r = classes_array_parcelable.get(i);
+            classes_array.add(r);
+        }
 
 
     }
@@ -67,7 +80,8 @@ public class RandomClassActivity extends ActionBarActivity {
         if (!classes_array.isEmpty()) {
             // Seleciona uma classe aleatória
             Collections.shuffle(classes_array);
-            String random_class = classes_array.get(0).toString();
+            String random_class = classes_array.get(0).name;
+            String random_class_discription = classes_array.get(0).description;
             random_class = random_class.toUpperCase();
 
             String description = "This method has two variants. First variant converts all of the characters in this String to upper case using the rules of the given Locale. This is equivalent to calling toUpperCase(Locale.getDefault()). ";
@@ -77,7 +91,7 @@ public class RandomClassActivity extends ActionBarActivity {
             //TextView text = (TextView) findViewById(R.id.text_random_class);
             //text.setText(random_class);
             new AlertDialog.Builder(this)
-                    .setMessage("Você é o(a): "+random_class+"\n\n"+description)
+                    .setMessage("Você é o(a): "+random_class+"\n\nDescrição: "+random_class_discription+"\n\nPor favor, aperte OK e passe o celular para o próximo jogador")
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete

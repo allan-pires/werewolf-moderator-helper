@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class SelectClassesActivity extends ActionBarActivity {
 
+    MainActivity m = new MainActivity();
     // Mensagem a ser recebida
     String message = "";
 
@@ -70,40 +71,41 @@ public class SelectClassesActivity extends ActionBarActivity {
 
     // Cria um ArrayList com todas as classes selecionadas
     public ArrayList getSelectedClasses(){
-        ArrayList<String> selected_classes = new ArrayList<>();
+        Role r = new Role();
+        ArrayList<Role> selected_classes = new ArrayList<>();
 
         ToggleButton text = (ToggleButton) findViewById(R.id.toggle_lobisomem);
-        if(text.isChecked()) selected_classes.add("Lobisomem");
+        if(text.isChecked()) selected_classes.add(r.createLobisomem());
 
         text = (ToggleButton) findViewById(R.id.toggle_campones);
-        if(text.isChecked()) selected_classes.add("Camponês");
+        if(text.isChecked()) selected_classes.add(r.createCampones());
 
         text = (ToggleButton) findViewById(R.id.toggle_vidente);
-        if(text.isChecked()) selected_classes.add("Vidente");
+        if(text.isChecked()) selected_classes.add(r.createVidente());
 
         text = (ToggleButton) findViewById(R.id.toggle_cupido);
-        if(text.isChecked()) selected_classes.add("Cupido");
+        if(text.isChecked()) selected_classes.add(r.createCupido());
 
         text = (ToggleButton) findViewById(R.id.toggle_cacador);
-        if(text.isChecked()) selected_classes.add("Caçador");
+        if(text.isChecked()) selected_classes.add(r.createCacador());
 
         text = (ToggleButton) findViewById(R.id.toggle_garotinha);
-        if(text.isChecked()) selected_classes.add("Garotinha");
+        if(text.isChecked()) selected_classes.add(r.createGarotinha());
 
         text = (ToggleButton) findViewById(R.id.toggle_bruxa);
-        if(text.isChecked()) selected_classes.add("Bruxa");
+        if(text.isChecked()) selected_classes.add(r.createBruxa());
 
         text = (ToggleButton) findViewById(R.id.toggle_lobisomem_alfa);
-        if(text.isChecked()) selected_classes.add("Lobisomem Alfa");
+        if(text.isChecked()) selected_classes.add(r.createLobisomemAlfa());
 
         text = (ToggleButton) findViewById(R.id.toggle_traidor);
-        if(text.isChecked()) selected_classes.add("Traidor");
+        if(text.isChecked()) selected_classes.add(r.createTraidor());
 
         text = (ToggleButton) findViewById(R.id.toggle_silenciador);
-        if(text.isChecked()) selected_classes.add("Silenciador");
+        if(text.isChecked()) selected_classes.add(r.createSilenciador());
 
         text = (ToggleButton) findViewById(R.id.toggle_mago);
-        if(text.isChecked()) selected_classes.add("Mago");
+        if(text.isChecked()) selected_classes.add(r.createMago());
 
         return selected_classes;
     }
@@ -111,13 +113,15 @@ public class SelectClassesActivity extends ActionBarActivity {
     // Seta a quantidade de camponeses e lobisomens
     public ArrayList getSelectedClassesQuantity(){
         int quantity = Integer.parseInt(message);
-        ArrayList classes = getSelectedClasses();
+        ArrayList<Role> classes = getSelectedClasses();
+        Role r = new Role();
+
         if (quantity > 9){
-            classes.add("Lobisomem");
+            classes.add(r.createLobisomem());
         }
 
         for (int i = classes.size(); i < quantity; i++){
-            classes.add("Camponês");
+            classes.add(r.createCampones());
         }
         return classes;
     }
@@ -128,9 +132,10 @@ public class SelectClassesActivity extends ActionBarActivity {
         Intent intent = new Intent(this, GameSetupConfirmationActivity.class);
 
         // Cria mensagem para enviar para prox Activity (classes selecionadas)
-        ArrayList classes = getSelectedClassesQuantity();
+        ArrayList roles = getSelectedClassesQuantity();
+
         intent.putExtra("quantity", message);
-        intent.putExtra("classes", classes);
+        intent.putParcelableArrayListExtra("roles", roles);
 
         // Inicia prox Activity
         startActivity(intent);

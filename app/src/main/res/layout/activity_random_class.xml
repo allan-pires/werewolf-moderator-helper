@@ -15,7 +15,8 @@
         android:text="Qual a sua classe?"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="109dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,18 +27,15 @@
         android:background="@android:color/transparent"
         android:onClick="getRandomClass"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="46dp"
         android:layout_below="@+id/text_player_class"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/text_random_class"
-        android:layout_marginTop="59dp"
-        android:layout_below="@+id/button_select_class"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="wrap_content"
+        android:id="@+id/img_class"
+        android:src="@drawable/campones_selected_xhdpi" />
+
 
 </RelativeLayout>

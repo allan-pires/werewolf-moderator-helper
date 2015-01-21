@@ -1,7 +1,9 @@
 package doistres.werewolf;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class GameSetupConfirmationActivity extends ActionBarActivity {
+public class GameSetupConfirmationActivity extends Activity {
 
-    ArrayList classes_array = new ArrayList();
+    ArrayList<Role> classes_array = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +40,18 @@ public class GameSetupConfirmationActivity extends ActionBarActivity {
 
         // Recebe mensagem da Activity anterior (quantidade de jogadores e classes)
         Intent intent = getIntent();
-        classes_array = intent.getStringArrayListExtra("classes");
-        Collections.sort(classes_array);
+        ArrayList<Role> classes_array_parcelable = intent.getParcelableArrayListExtra("roles");
+        classes_array = parcelLoad(classes_array_parcelable);
         String quantity_s = intent.getStringExtra("quantity");
+
+
 
         // Atualiza TextViews da Activity
         TextView classes = (TextView) findViewById(R.id.text_classes_selected);
         TextView players = (TextView) findViewById(R.id.text_players_quantity);
         players.setText("Jogadores: "+ quantity_s);
-        classes.setText("Classes: "+ ((CharSequence) classes_array.toString()));
+        String s = getRoleNames(classes_array);
+        classes.setText("Classes: "+ s);
 
         // Muda a fonte dos textos para AMATIC
         players.setTypeface(amatic);
@@ -78,9 +83,42 @@ public class GameSetupConfirmationActivity extends ActionBarActivity {
         Intent intent = new Intent(this, RandomClassActivity.class);
 
         // Envia o ArrayList de classes para a prox Activity
-        intent.putExtra("classes", classes_array);
+        intent.putParcelableArrayListExtra("roles", classes_array);
 
         // Inicia a prox Activity
         startActivity(intent);
+    }
+
+    // Resolve as parcelas do pacote extra
+    public ArrayList<Role> parcelLoad(ArrayList<Role> array_parcelable){
+        ArrayList<Role> array = new ArrayList<>();
+        for (int i = 0; i < array_parcelable.size (); i++)
+        {
+            Role r = array_parcelable.get(i);
+            array.add(r);
+        }
+        Collections.sort(array);
+        return array;
+    }
+
+    // Cria um String só com os nomes das classes
+    public String getRoleNames(ArrayList<Role> classes_array) {
+        String s = "";
+        int campones_quantity = 0;
+        int lobisomem_quantity = 0;
+
+        // Conta a quantidade de camponeses
+        for (int i = 0; i < classes_array.size(); i++) {
+            if (classes_array.get(i).name.contentEquals("Camponês")) campones_quantity++;
+            if (classes_array.get(i).name.contentEquals("Lobisomem")) lobisomem_quantity++;
+        }
+
+        s += "\n\t\t\tCamponês   x"+campones_quantity;
+        s += "\n\t\t\tLobisomem   x"+lobisomem_quantity;
+        for (int i = 0; i < classes_array.size(); i++) {
+            String n = classes_array.get(i).name;
+            if (!n.contentEquals("Lobisomem") && !n.contentEquals("Camponês")) s += "\n\t\t\t"+n+"   x1";
+        }
+        return s;
     }
 }

@@ -5,7 +5,9 @@
     android:background="@drawable/bg_xxxhdpi"
     tools:context="doistres.werewolf.GameSetupConfirmationActivity">
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -30,7 +32,8 @@
             android:text="Medium Text"
             android:id="@+id/text_players_quantity"
             android:textColor="#ff000000"
-            android:textSize="24dp" />
+            android:textSize="36dp"
+            android:layout_margin="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +42,8 @@
             android:text="Medium Text"
             android:id="@+id/text_classes_selected"
             android:textColor="#ff000000"
-            android:textSize="24dp" />
+            android:textSize="36dp"
+            android:layout_margin="20dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -47,11 +51,12 @@
             android:text="Próximo >"
             android:textColor="#ff000000"
             android:layout_gravity="bottom|right"
-            android:textSize="36dp"
+            android:textSize="48dp"
             android:layout_marginRight="10dp"
             android:id="@+id/button_goToRandomClass"
             android:background="@android:color/transparent"
             android:clickable="true"
             android:onClick="goToRandomClassActivity" />
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
