@@ -1,12 +1,17 @@
 package doistres.werewolf;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,16 +64,41 @@ public class RandomClassActivity extends ActionBarActivity {
 
     // Pega uma classe aleatória
     public void getRandomClass(View view){
+        if (!classes_array.isEmpty()) {
+            // Seleciona uma classe aleatória
+            Collections.shuffle(classes_array);
+            String random_class = classes_array.get(0).toString();
+            random_class = random_class.toUpperCase();
 
-        // Seleciona uma classe aleatória
-        Collections.shuffle(classes_array);
-        String random_class = classes_array.get(0).toString();
+            String description = "This method has two variants. First variant converts all of the characters in this String to upper case using the rules of the given Locale. This is equivalent to calling toUpperCase(Locale.getDefault()). ";
 
-        // Atualiza texto de classe
-        TextView text = (TextView) findViewById(R.id.text_random_class);
-        text.setText(random_class);
 
-        // Remove classe do array
-        classes_array.remove(0);
+            // Atualiza texto de classe
+            //TextView text = (TextView) findViewById(R.id.text_random_class);
+            //text.setText(random_class);
+            new AlertDialog.Builder(this)
+                    .setMessage("Você é o(a): "+random_class+"\n\n"+description)
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+            // Remove classe do array
+            classes_array.remove(0);
+        }
+        else{
+            new AlertDialog.Builder(this)
+                    .setMessage("Todas as classes já foram escolhidas!")
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 }
