@@ -1,6 +1,7 @@
 package doistres.werewolf;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -137,8 +139,12 @@ public class SelectClassesActivity extends ActionBarActivity {
         intent.putExtra("quantity", message);
         intent.putParcelableArrayListExtra("roles", roles);
 
+        Button button = (Button) findViewById(R.id.button_start);
+        button.setTextColor(Color.GRAY);
+
         // Inicia prox Activity
         startActivity(intent);
+        this.finish();
     }
 
 }

@@ -3,6 +3,7 @@ package doistres.werewolf;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -81,6 +82,9 @@ public class PlayersQuantityActivity extends ActionBarActivity {
                     String message = quantidade.getText().toString();
                     intent.putExtra("foo", message);
 
+                    Button button = (Button) findViewById(R.id.text_ok_players_quantity);
+                    button.setTextColor(Color.rgb(119, 1, 1));
+
                     // Inicia prox Activity
                     startActivity(intent);
 
@@ -98,7 +102,7 @@ public class PlayersQuantityActivity extends ActionBarActivity {
 
             // Msg de erro
             else new AlertDialog.Builder(this)
-                    .setMessage("A quantidade de jogadores precisa ser maior que 4!")
+                    .setMessage("Precisa fazer novos amigos, hein? O número mínimo de jogadores é 5!")
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
@@ -109,7 +113,7 @@ public class PlayersQuantityActivity extends ActionBarActivity {
         }
         // Msg de erro
         else new AlertDialog.Builder(this)
-                .setMessage("Você precisa informar a quantidade de jogadores!")
+                .setMessage("Tá me zoando? Você precisa informar a quantidade de jogadores!")
                 .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // continue with delete

@@ -3,6 +3,7 @@ package doistres.werewolf;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,12 +48,7 @@ public class RandomClassActivity extends ActionBarActivity {
         // Recebe mensagem da Activity anterior (quantidade de jogadores)
         Intent intent = getIntent();
         ArrayList<Role> classes_array_parcelable = intent.getParcelableArrayListExtra("roles");
-        for (int i = 0; i < classes_array_parcelable.size (); i++)
-        {
-            Role r = classes_array_parcelable.get(i);
-            classes_array.add(r);
-        }
-
+        classes_array = parcelLoad(classes_array_parcelable);
 
     }
 
@@ -77,16 +75,31 @@ public class RandomClassActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Resolve as parcelas do pacote extra
+    public ArrayList<Role> parcelLoad(ArrayList<Role> array_parcelable){
+        ArrayList<Role> array = new ArrayList<>();
+        for (int i = 0; i < array_parcelable.size (); i++)
+        {
+            Role r = array_parcelable.get(i);
+            array.add(r);
+        }
+        Collections.sort(array);
+        return array;
+    }
+
     // Pega uma classe aleatória
     public void getRandomClass(View view){
+
+        final Animation animScale = AnimationUtils.loadAnimation(this, R.anim.scale);
+        Button button1 = (Button) findViewById(R.id.button_select_class);
+        button1.startAnimation(animScale);
+
         if (!classes_array.isEmpty()) {
             // Seleciona uma classe aleatória
             Collections.shuffle(classes_array);
             String random_class = classes_array.get(0).name;
             String random_class_discription = classes_array.get(0).description;
             random_class = random_class.toUpperCase();
-
-            String description = "This method has two variants. First variant converts all of the characters in this String to upper case using the rules of the given Locale. This is equivalent to calling toUpperCase(Locale.getDefault()). ";
 
 
             // Atualiza texto de classe
@@ -128,11 +141,14 @@ public class RandomClassActivity extends ActionBarActivity {
     public void goToNightTurnActivity(View view) {
         // Cria um intent da prox Activity
         Intent intent = new Intent(this, NightTurnActivity.class);
-
         intent.putParcelableArrayListExtra("roles", classes_array);
+
+        Button button = (Button) findViewById(R.id.button_goToNightTurn);
+        button.setTextColor(Color.rgb(119, 1, 1));
 
         // Inicia prox Activity
         startActivity(intent);
+        this.finish();
 
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }

@@ -2,6 +2,7 @@ package doistres.werewolf;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
@@ -84,6 +85,9 @@ public class GameSetupConfirmationActivity extends Activity {
 
         // Envia o ArrayList de classes para a prox Activity
         intent.putParcelableArrayListExtra("roles", classes_array);
+
+        Button button = (Button) findViewById(R.id.button_goToRandomClass);
+        button.setTextColor(Color.rgb(119, 1, 1));
 
         // Inicia a prox Activity
         startActivity(intent);

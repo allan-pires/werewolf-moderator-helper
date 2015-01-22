@@ -1,6 +1,7 @@
 package doistres.werewolf;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import static android.media.AudioManager.*;
@@ -65,6 +68,10 @@ public class MainActivity extends ActionBarActivity {
     // Vai para a prox Activity
     public void goToPlayersQuantityActivity(View view) {
         Intent intent = new Intent(this, PlayersQuantityActivity.class);
+
+        Button button = (Button) findViewById(R.id.new_game_button);
+        button.setTextColor(Color.rgb(119, 1, 1));
+
         startActivity(intent);
     }
 

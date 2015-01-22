@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\classes-cef1da4793faf095d9f8a4b373a4f0e41fdee552.jar" />
-    </item>
-    <item
-        jar="C:\Users\Daniel\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-bc6d48aa256a944dae514efb7620be498f80b8e8.jar" />
-    </item>
-    <item
-        jar="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\classes-5b168c9ccf76f7819d410f2a01a14fef6f225ad3.jar" />
+        <dex dex="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\classes-b9a441eedaa43674b33aa6aa22d2629876e87bed.jar" />
     </item>
     <item
-        jar="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\classes-d72ebe39914630650620aecb937eef10ae6efe9d.jar" />
+    </item>
+    <item
+        jar="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Daniel\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-badd022224feeb8a62800aa2ae0aa99236209881.jar" />
+        <dex dex="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b09de1f61cde805f4ae583f9b0e40cab342d1f06.jar" />
+    </item>
+    <item
+        jar="C:\Users\doisl_000\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\doisl_000\AndroidStudioProjects\Werewolf_git\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-d66fd9a5a9a64575a0d884c9d232a870d552fa7e.jar" />
     </item>
 
 </items>

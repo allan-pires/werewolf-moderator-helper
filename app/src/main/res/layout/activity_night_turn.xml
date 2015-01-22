@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Turno do Lobisomem"
+        android:text="E assim... a noite cai"
         android:id="@+id/text_class_turn"
         android:textColor="#ffffffff"
         android:textSize="48dp"
@@ -29,10 +29,10 @@
         android:layout_marginTop="93dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Peça para que os lobisomens acordem e se conheçam"
+        android:text="Peça para que todos durmam"
         android:id="@+id/text_class_objective"
         android:textColor="#ffffffff"
         android:gravity="center"
