@@ -71,7 +71,7 @@ public class SelectClassesActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Cria um ArrayList com todas as classes selecionadas
+    // Cria um ArrayList com todas as classes_turn selecionadas
     public ArrayList getSelectedClasses(){
         Role r = new Role();
         ArrayList<Role> selected_classes = new ArrayList<>();
@@ -133,7 +133,7 @@ public class SelectClassesActivity extends ActionBarActivity {
         // Cria um intent da prox Activity
         Intent intent = new Intent(this, GameSetupConfirmationActivity.class);
 
-        // Cria mensagem para enviar para prox Activity (classes selecionadas)
+        // Cria mensagem para enviar para prox Activity (classes_turn selecionadas)
         ArrayList roles = getSelectedClassesQuantity();
 
         intent.putExtra("quantity", message);

@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_noite"
+    android:screenOrientation="portrait"
+    android:id="@+id/game_bg"
+    tools:context="doistres.werewolf.GameActivity">
+
+    <TextView android:text="Noite    1" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/day_night_text"
+        android:layout_marginTop="65dp"
+        android:textSize="48dp"
+        android:textColor="#ffffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="E assim... a noite cai"
+        android:id="@+id/text_class_turn"
+        android:textColor="#ffffffff"
+        android:textSize="48dp"
+        android:layout_below="@+id/day_night_text"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="93dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Peça para que todos durmam"
+        android:id="@+id/text_class_objective"
+        android:textColor="#ffffffff"
+        android:gravity="center"
+        android:layout_below="@+id/text_class_turn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Próxima classe >"
+        android:id="@+id/button_next_class"
+        android:textSize="36dp"
+        android:background="@android:color/transparent"
+        android:onClick="getNextClass"
+        android:textColor="#ffffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="bottom"
+        android:longClickable="false" />
+
+
+</RelativeLayout>

@@ -39,7 +39,7 @@ public class GameSetupConfirmationActivity extends Activity {
         prox.setTypeface(amatic);
 
 
-        // Recebe mensagem da Activity anterior (quantidade de jogadores e classes)
+        // Recebe mensagem da Activity anterior (quantidade de jogadores e classes_turn)
         Intent intent = getIntent();
         ArrayList<Role> classes_array_parcelable = intent.getParcelableArrayListExtra("roles");
         classes_array = parcelLoad(classes_array_parcelable);
@@ -83,7 +83,7 @@ public class GameSetupConfirmationActivity extends Activity {
         // Cria um intent da prox Activity
         Intent intent = new Intent(this, RandomClassActivity.class);
 
-        // Envia o ArrayList de classes para a prox Activity
+        // Envia o ArrayList de classes_turn para a prox Activity
         intent.putParcelableArrayListExtra("roles", classes_array);
 
         Button button = (Button) findViewById(R.id.button_goToRandomClass);
@@ -105,7 +105,7 @@ public class GameSetupConfirmationActivity extends Activity {
         return array;
     }
 
-    // Cria um String só com os nomes das classes
+    // Cria um String só com os nomes das classes_turn
     public String getRoleNames(ArrayList<Role> classes_array) {
         String s = "";
         int campones_quantity = 0;

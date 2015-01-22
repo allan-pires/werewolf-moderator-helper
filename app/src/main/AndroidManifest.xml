@@ -56,7 +56,7 @@
                 android:value=".GameSetupConfirmationActivity" />
         </activity>
         <activity
-            android:name=".NightTurnActivity"
+            android:name=".GameActivity"
             android:label="@string/title_activity_night_turn"
             android:screenOrientation="portrait"
             android:parentActivityName=".RandomClassActivity" >

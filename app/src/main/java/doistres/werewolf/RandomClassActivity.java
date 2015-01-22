@@ -1,13 +1,12 @@
 package doistres.werewolf;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,16 +14,16 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 
-public class RandomClassActivity extends ActionBarActivity {
+public class RandomClassActivity extends Activity {
+
     ArrayList<Role> classes_array = new ArrayList();
+    ArrayList<Role> classes_array_copy = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +48,7 @@ public class RandomClassActivity extends ActionBarActivity {
         Intent intent = getIntent();
         ArrayList<Role> classes_array_parcelable = intent.getParcelableArrayListExtra("roles");
         classes_array = parcelLoad(classes_array_parcelable);
+        classes_array_copy = new ArrayList<>(classes_array);
 
     }
 
@@ -140,8 +140,10 @@ public class RandomClassActivity extends ActionBarActivity {
     // Vai para a prox Activity
     public void goToNightTurnActivity(View view) {
         // Cria um intent da prox Activity
-        Intent intent = new Intent(this, NightTurnActivity.class);
-        intent.putParcelableArrayListExtra("roles", classes_array);
+        Intent intent = new Intent(this, GameActivity.class);
+
+        // Envia o ArrayList de classes para a prox Activity
+        intent.putParcelableArrayListExtra("roles", classes_array_copy);
 
         Button button = (Button) findViewById(R.id.button_goToNightTurn);
         button.setTextColor(Color.rgb(119, 1, 1));
