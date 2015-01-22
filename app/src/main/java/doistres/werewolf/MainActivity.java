@@ -65,6 +65,13 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onBackPressed() {
+
+        android.os.Process.killProcess(android.os.Process.myPid());
+        super.onBackPressed();
+        // This above line close correctly
+    }
+
     // Vai para a prox Activity
     public void goToPlayersQuantityActivity(View view) {
         Intent intent = new Intent(this, PlayersQuantityActivity.class);
@@ -75,7 +82,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void main(String[] args){
+    public void exitApp(View view){
+        Button button = (Button) findViewById(R.id.exit_button);
+        button.setTextColor(Color.rgb(119, 1, 1));
 
+        finish();
+        System.exit(0);
     }
 }

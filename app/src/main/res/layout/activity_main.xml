@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="Sair"
         android:id="@+id/exit_button"
+        android:onClick="exitApp"
         android:background="@android:color/transparent"
         android:shadowColor="@android:color/transparent"
         android:textSize="64dp"
