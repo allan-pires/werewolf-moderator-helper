@@ -31,4 +31,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Começar o jogo >"
+        android:id="@+id/button_goToNightTurn"
+        android:textSize="36dp"
+        android:background="@android:color/transparent"
+        android:onClick="goToNightTurnActivity"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/button_select_class"
+        android:layout_centerHorizontal="true"
+        android:alpha="0"
+        android:clickable="false" />
+
 </RelativeLayout>

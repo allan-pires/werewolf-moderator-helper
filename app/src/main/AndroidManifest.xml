@@ -8,6 +8,8 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <service android:name=".BackgroundSoundService" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -52,6 +54,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".GameSetupConfirmationActivity" />
+        </activity>
+        <activity
+            android:name=".NightTurnActivity"
+            android:label="@string/title_activity_night_turn"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".RandomClassActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="doistres.werewolf.RandomClassActivity" />
         </activity>
     </application>
 

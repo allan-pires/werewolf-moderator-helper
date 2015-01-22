@@ -2,6 +2,8 @@ package doistres.werewolf;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,8 +12,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import static android.media.AudioManager.*;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private int soundID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +65,12 @@ public class MainActivity extends ActionBarActivity {
     // Vai para a prox Activity
     public void goToPlayersQuantityActivity(View view) {
         Intent intent = new Intent(this, PlayersQuantityActivity.class);
+
         startActivity(intent);
+
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+
     }
 
     public void main(String[] args){

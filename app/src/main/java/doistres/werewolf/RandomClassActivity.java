@@ -39,6 +39,8 @@ public class RandomClassActivity extends ActionBarActivity {
         Button prox = (Button) findViewById(R.id.button_select_class);
         text.setTypeface(amatic);
         prox.setTypeface(amatic);
+        prox = (Button) findViewById(R.id.button_goToNightTurn);
+        prox.setTypeface(amatic);
 
         // Recebe mensagem da Activity anterior (quantidade de jogadores)
         Intent intent = getIntent();
@@ -104,6 +106,12 @@ public class RandomClassActivity extends ActionBarActivity {
             classes_array.remove(0);
         }
         else{
+
+            // Mostra o botao para a prox Activity
+            Button button = (Button) findViewById(R.id.button_goToNightTurn);
+            button.setAlpha(1);
+            button.setClickable(true);
+
             new AlertDialog.Builder(this)
                     .setMessage("Todas as classes já foram escolhidas!")
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -114,5 +122,14 @@ public class RandomClassActivity extends ActionBarActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
+    }
+
+    // Vai para a prox Activity
+    public void goToNightTurnActivity(View view) {
+        // Cria um intent da prox Activity
+        Intent intent = new Intent(this, NightTurnActivity.class);
+
+        // Inicia prox Activity
+        startActivity(intent);
     }
 }
