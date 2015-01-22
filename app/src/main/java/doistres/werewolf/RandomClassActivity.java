@@ -129,7 +129,11 @@ public class RandomClassActivity extends ActionBarActivity {
         // Cria um intent da prox Activity
         Intent intent = new Intent(this, NightTurnActivity.class);
 
+        intent.putParcelableArrayListExtra("roles", classes_array);
+
         // Inicia prox Activity
         startActivity(intent);
+
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

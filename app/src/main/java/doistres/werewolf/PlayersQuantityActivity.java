@@ -83,6 +83,7 @@ public class PlayersQuantityActivity extends ActionBarActivity {
 
                     // Inicia prox Activity
                     startActivity(intent);
+
                 }
                 else new AlertDialog.Builder(this)
                         .setMessage("Tá exaltado, fera? O número máximo de jogadores é 68.")

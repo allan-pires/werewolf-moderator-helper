@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Começar o jogo >"
         android:id="@+id/button_goToNightTurn"
-        android:textSize="36dp"
+        android:textSize="48dp"
         android:background="@android:color/transparent"
         android:onClick="goToNightTurnActivity"
         android:layout_gravity="center_horizontal"

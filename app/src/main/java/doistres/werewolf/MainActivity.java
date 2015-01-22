@@ -65,12 +65,7 @@ public class MainActivity extends ActionBarActivity {
     // Vai para a prox Activity
     public void goToPlayersQuantityActivity(View view) {
         Intent intent = new Intent(this, PlayersQuantityActivity.class);
-
         startActivity(intent);
-
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-
     }
 
     public void main(String[] args){

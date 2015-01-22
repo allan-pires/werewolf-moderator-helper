@@ -1,5 +1,6 @@
 package doistres.werewolf;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,10 +10,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class NightTurnActivity extends ActionBarActivity {
 
     boolean first_night = true;
+    ArrayList<Role> classes_array = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,22 @@ public class NightTurnActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_night_turn);
 
+        // Recebe mensagem da Activity anterior (quantidade de jogadores)
+        Intent intent = getIntent();
+        ArrayList<Role> classes_array_parcelable = intent.getParcelableArrayListExtra("roles");
+        for (int i = 0; i < classes_array_parcelable.size (); i++)
+        {
+            Role r = classes_array_parcelable.get(i);
+            classes_array.add(r);
+        }
+
         // Muda a fonte dos textos para AMATIC
         Typeface amatic = Typeface.createFromAsset(getAssets(), "amatic.ttf");
         TextView t = (TextView) findViewById(R.id.night_turn);
+        t.setTypeface(amatic);
+        t = (TextView) findViewById(R.id.text_class_turn);
+        t.setTypeface(amatic);
+        t = (TextView) findViewById(R.id.button_next_class);
         t.setTypeface(amatic);
 
     }
@@ -51,5 +68,9 @@ public class NightTurnActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void getNextClass(){
+
     }
 }
