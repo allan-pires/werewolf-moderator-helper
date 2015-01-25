@@ -22,9 +22,16 @@ import java.util.Collections;
 
 public class GameActivity extends ActionBarActivity {
 
+    // Indicador da primeira noite
     boolean first_night = true;
+
+    // Contador de dias
     int day_count = 1;
+
+    // Array com todas as Roles selecionadas
     ArrayList<Role> classes_array = new ArrayList();
+
+    // Array com os nomes das classe que ainda faltam jogar
     ArrayList<String> classes_turn = new ArrayList<>();
 
     @Override
@@ -53,7 +60,6 @@ public class GameActivity extends ActionBarActivity {
         t.setTypeface(amatic);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,6 +120,7 @@ public class GameActivity extends ActionBarActivity {
         return n;
     }
 
+    // Manda acordar determinada classe
     public void wakeUp(String role){
         // Cria animacao de texto
         TextView text_role = (TextView) findViewById(R.id.text_class_turn);
@@ -159,7 +166,7 @@ public class GameActivity extends ActionBarActivity {
         action.setText(message);
     }
 
-
+    // Passa para o turno de outra classe
     public void getNextClass(View view){
         Button b = (Button) findViewById(R.id.button_next_class);
         final Animation scale = AnimationUtils.loadAnimation(this, R.anim.scale);
@@ -196,6 +203,7 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
+    // Inicia o turno matinal
     public void morningTurn(){
 
         // Cria animacao de texto
@@ -218,7 +226,7 @@ public class GameActivity extends ActionBarActivity {
         action.startAnimation(fadeIn);
     }
 
-    // Acorda os roles com ações
+    // Inicia o turno da noite
     public void nightTurn(){
         // Inicia ponteiros
         TextView text_role = (TextView) findViewById(R.id.text_class_turn);
@@ -271,7 +279,7 @@ public class GameActivity extends ActionBarActivity {
         }
     }
 
-    // Acorda todos os roles
+    // Inicia o jogo com o turno noturno, acordando todas as classes
     public void firstNightTurn(){
 
         if (classes_turn.contains("Lobisomem")) {

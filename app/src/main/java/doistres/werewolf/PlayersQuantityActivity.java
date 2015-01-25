@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 public class PlayersQuantityActivity extends ActionBarActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +36,6 @@ public class PlayersQuantityActivity extends ActionBarActivity {
         button.setTypeface(amatic);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,7 +78,7 @@ public class PlayersQuantityActivity extends ActionBarActivity {
                     // Cria mensagem para enviar para prox Activity (quantidade de jogadores)
 
                     String message = quantidade.getText().toString();
-                    intent.putExtra("foo", message);
+                    intent.putExtra("quantity", message);
 
                     Button button = (Button) findViewById(R.id.text_ok_players_quantity);
                     button.setTextColor(Color.rgb(119, 1, 1));

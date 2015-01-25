@@ -18,9 +18,12 @@ import java.util.ArrayList;
 
 public class SelectClassesActivity extends ActionBarActivity {
 
-    MainActivity m = new MainActivity();
+
     // Mensagem a ser recebida
     String message = "";
+
+    // Contador de classes restantes para selecionar
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,10 @@ public class SelectClassesActivity extends ActionBarActivity {
 
         // Recebe mensagem da Activity anterior (quantidade de jogadores)
         Intent intent = getIntent();
-        message = intent.getStringExtra("foo");
+        message = intent.getStringExtra("quantity");
+        count = Integer.parseInt(message);
+        count -= 3;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

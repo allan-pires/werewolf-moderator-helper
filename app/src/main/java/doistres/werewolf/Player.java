@@ -5,11 +5,19 @@ package doistres.werewolf;
  */
 public class Player {
 
+    // Classe do jogador
     Role role;
+
+    // Amante, caso o jogador tenha sido selecionado pelo cupido
     Player bound;
+
+    // Indicador de ligação amorosa realizada pelo cupido
     boolean love_bind;
+
+    // Indicador de morte
     boolean dead;
 
+    // Construtor padrão
     Player(){
         this.role= new Role();
         this.bound = new Player();
@@ -17,15 +25,18 @@ public class Player {
         this.dead = false;
     }
 
+    // Construtor de roles
     Player(Role role){
         this.role = role;
         this.dead = false;
     }
 
+    // Retorna se o jogador está morto
     public boolean isDead(){
         return this.dead;
     }
 
+    // Retorna se o jogador tem um amante
     public boolean isLoveBind(){
         return this.love_bind;
     }

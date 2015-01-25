@@ -42,7 +42,6 @@ public class MainActivity extends ActionBarActivity {
         button.setTypeface(amatic);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -65,6 +64,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Mata o processo
     public void onBackPressed() {
 
         android.os.Process.killProcess(android.os.Process.myPid());
@@ -82,6 +82,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    // Sai do aplicativo
     public void exitApp(View view){
         Button button = (Button) findViewById(R.id.exit_button);
         button.setTextColor(Color.rgb(119, 1, 1));
