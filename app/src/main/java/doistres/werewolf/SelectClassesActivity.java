@@ -1,5 +1,7 @@
 package doistres.werewolf;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -132,7 +134,11 @@ public class SelectClassesActivity extends ActionBarActivity {
         ArrayList<Role> classes = getSelectedClasses();
         Role r = new Role();
 
-        if (quantity > 9){
+        if (quantity >= 10){
+            classes.add(r.createLobisomem());
+        }
+
+        if (quantity >= 20){
             classes.add(r.createLobisomem());
         }
 
@@ -142,23 +148,65 @@ public class SelectClassesActivity extends ActionBarActivity {
         return classes;
     }
 
+    // Retorna a quantidade de classes opcionais que podem ser selecionadas
+    public int quantityToPick(){
+        int quantity = Integer.parseInt(message);
+
+        // 3 vem de 1 lobisomem, 1 camponês e 1 vidente obrigatórios
+        if (quantity < 10){
+            return ((quantity-2)/2);
+        }
+
+        // 4 vem de 2 lobisomem, 1 camponês e 1 vidente obrigatórios
+        if (quantity >= 10){
+            return ((quantity-3)/2);
+        }
+
+        // 5 vem de 3 lobisomem, 1 camponês e 1 vidente obrigatórios
+        if (quantity >= 20){
+            return ((quantity-4)/2);
+        }
+
+        return 0;
+    }
+
     // Vai para a prox Activity
     public void goToGameSetupConfirmationActivity(View view) {
-        // Cria um intent da prox Activity
-        Intent intent = new Intent(this, GameSetupConfirmationActivity.class);
 
-        // Cria mensagem para enviar para prox Activity (classes_turn selecionadas)
-        ArrayList roles = getSelectedClassesQuantity();
+        int quantity_selected = getSelectedClasses().size()-3;
+        int quantity_to_select = quantityToPick();
 
-        intent.putExtra("quantity", message);
-        intent.putParcelableArrayListExtra("roles", roles);
+        if (quantity_selected <= quantity_to_select) {
 
-        Button button = (Button) findViewById(R.id.button_start);
-        button.setTextColor(Color.GRAY);
+            // Cria mensagem para enviar para prox Activity (classes_turn selecionadas)
+            ArrayList roles = getSelectedClassesQuantity();
 
-        // Inicia prox Activity
-        startActivity(intent);
-        this.finish();
+            // Cria um intent da prox Activity
+            Intent intent = new Intent(this, GameSetupConfirmationActivity.class);
+            intent.putExtra("quantity", message);
+            intent.putParcelableArrayListExtra("roles", roles);
+
+            Button button = (Button) findViewById(R.id.button_start);
+            button.setTextColor(Color.GRAY);
+
+            // Inicia prox Activity
+            startActivity(intent);
+            this.finish();
+        }
+
+        else {
+            int q = quantityToPick();
+
+            new AlertDialog.Builder(this)
+                    .setMessage("Você só pode escolher "+q+" classes opcionais para a quantidade de jogadores indicada!")
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
 }
