@@ -1,5 +1,8 @@
 package doistres.werewolf;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -14,6 +17,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,6 +34,16 @@ public class GameActivity extends ActionBarActivity {
 
     // Contador de dias
     int day_count = 1;
+
+    // Contador de linchamento
+    int lynch_count = 0;
+
+    // Contador de jogadores
+    int players_left = 0;
+    int werewolfs_left = 0;
+
+    // Indicador de fim de jogo
+    boolean game_over;
 
     // Array com todas as Roles selecionadas
     ArrayList<Role> classes_array = new ArrayList();
@@ -76,6 +90,15 @@ public class GameActivity extends ActionBarActivity {
         MainActivity.mMediaPlayer.setLooping(true);
         MainActivity.mMediaPlayer.start();
 
+        // Mostra jogadores
+        players_array = createAllPlayers();
+        setPlayersLeft(players_array);
+        setWerewolfsLeft(players_array);
+        createAllPlayerViews(players_array);
+        createAllImageListener(players_array);
+        GridLayout grid = (GridLayout) findViewById(R.id.image_view_players);
+        grid.setAlpha(0);
+
     }
 
     @Override
@@ -98,6 +121,32 @@ public class GameActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean isGameOver(){
+        if (werewolfs_left >= players_left || werewolfs_left == 0) game_over = true;
+        return game_over;
+    }
+    // Seta a quantidade de camponeses restante
+    public void setPlayersLeft(ArrayList<Player> p){
+        for (int i = 0; i < p.size(); i++){
+            if ((   !p.get(i).role.name.equals("Lobisomem")
+                    && !p.get(i).role.name.equals("Lobisomem Alfa")
+                    && !p.get(i).role.name.equals("Traidor"))
+                    && !p.get(i).isDead())
+                        {
+                        players_left++;
+                        }
+        }
+    }
+
+    // Seta a quantidade de lobisomens restantes
+    public void setWerewolfsLeft(ArrayList<Player> p){
+        for (int i = 0; i < p.size(); i++){
+            if ((p.get(i).role.name.equals("Lobisomem") || p.get(i).role.name.equals("Lobisomem Alfa")) && !p.get(i).isDead() ){
+                werewolfs_left++;
+            }
+        }
     }
 
     // Resolve as parcelas do pacote extra
@@ -148,6 +197,9 @@ public class GameActivity extends ActionBarActivity {
                 v1.setImageResource(R.drawable.cupido_selected_xhdpi);
                 break;
             case "Caçador":
+                v1.setImageResource(R.drawable.cacador_selected_xhdpi);
+                break;
+            case "Garotinha":
                 v1.setImageResource(R.drawable.garotinha_selected_xhdpi);
                 break;
             case "Bruxa":
@@ -170,6 +222,16 @@ public class GameActivity extends ActionBarActivity {
 
         int overflow = 4;
         if (image_view_players_array.size() < 4){
+            GridLayout ll = (GridLayout) findViewById(R.id.image_view_players);
+            v1.setPadding(25, 25, 0, 0);
+            ll.addView(v1);
+        }
+        else{
+            GridLayout ll = (GridLayout) findViewById(R.id.image_view_players);
+            v1.setPadding(25, 25, 0, 0);
+            ll.addView(v1);
+
+            /*
             LinearLayout ll = (LinearLayout) findViewById(R.id.image_view_players);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -177,17 +239,10 @@ public class GameActivity extends ActionBarActivity {
             //rl.addRule(RelativeLayout.BELOW, R.id.day_night_text);
             v1.setPadding(25, 25, 0, 0);
             ll.addView(v1,lp);
-        }
-        else {
-            LinearLayout ll = (LinearLayout) findViewById(R.id.image_view_players);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            //rl.addRule(RelativeLayout.BELOW, R.id.day_night_text);
-            v1.setPadding(25, 25, 0, 0);
-            ll.addView(v1, lp);
+            */
         }
 
+        player.img = v1;
         image_view_players_array.add(v1);
 
     }
@@ -199,21 +254,64 @@ public class GameActivity extends ActionBarActivity {
         }
     }
 
-    // Cria um Listener para uma ImageView
-    public void createImageViewListener(ImageView v){
-        v.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                v.setAlpha((float)0.3);
+    // Cria um Listener para uma ImageView para Matar personagem
+    public void createImageViewListener(Player p){
+        final Context c = this;
+        final Player p1 = p;
+        p.img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (lynch_count == 0) {
+                    new AlertDialog.Builder(c)
+                            .setMessage("Deseja realmente matar " + p1.role.name + "?")
+                            .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Do nothing
+                                }
+                            })
+                            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    p1.dead = true;
+                                    p1.img.setAlpha((float) 0.3);
+                                    p1.img.setClickable(false);
+                                    if (p1.role.name.equals("Lobisomem") || p1.role.name.equals("Lobisomem Alfa"))
+                                        werewolfs_left--;
+                                    else players_left--;
+                                    lynch_count++;
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                } else {
+                    new AlertDialog.Builder(c)
+                            .setMessage("Uma pessoa já foi linchada hoje.")
+                            .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
             }
 
         });
+
+
+    }
+
+    public void gameOver(){
+        new AlertDialog.Builder(this)
+                .setMessage("FIM DE JOGO")
+                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
     }
 
     // Cria Listener para todas as ImageView
-    public void createAllImageListener(ArrayList<ImageView> v){
-        for (int i = 0; i < v.size(); i++){
-            createImageViewListener(v.get(i));
+    public void createAllImageListener(ArrayList<Player> p){
+        for (int i = 0; i < p.size(); i++){
+            createImageViewListener(p.get(i));
         }
     }
 
@@ -342,12 +440,14 @@ public class GameActivity extends ActionBarActivity {
         TextView action = (TextView) findViewById(R.id.text_class_objective);
         TextView text_day_night = (TextView) findViewById(R.id.day_night_text);
         Button next_class = (Button) findViewById(R.id.button_next_class);
+        GridLayout grid = (GridLayout) findViewById(R.id.image_view_players);
 
         final Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         final Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
         // Acorda personagem
-        text_role.setText("Todos acordam");
+        grid.setAlpha(1);
+        text_role.setAlpha(0);
         text_day_night.setText("Dia    "+day_count);
         action.setText("");
         next_class.setText("ANOITECER >");
@@ -356,10 +456,8 @@ public class GameActivity extends ActionBarActivity {
         text_role.startAnimation(fadeIn);
         action.startAnimation(fadeIn);
 
-        // Mostra jogadores
-        players_array = createAllPlayers();
-        createAllPlayerViews(players_array);
-        createAllImageListener(image_view_players_array);
+        lynch_count = 0;
+
     }
 
     // Inicia o turno da noite
@@ -378,12 +476,15 @@ public class GameActivity extends ActionBarActivity {
         TextView action = (TextView) findViewById(R.id.text_class_objective);
         TextView text_day_night = (TextView) findViewById(R.id.day_night_text);
         Button next_class = (Button) findViewById(R.id.button_next_class);
+        GridLayout grid = (GridLayout) findViewById(R.id.image_view_players);
 
         // Atualiza ponteiros
         final Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         final Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
         // Acorda personagem
+        grid.setAlpha(0);
+        text_role.setAlpha(1);
         text_day_night.setText("Noite    "+day_count);
         text_role.setText("E assim... a noite cai");
         action.setText("");
@@ -426,6 +527,7 @@ public class GameActivity extends ActionBarActivity {
 
     // Inicia o jogo com o turno noturno, acordando todas as classes
     public void firstNightTurn(){
+
 
         if (classes_turn.contains("Lobisomem")) {
             wakeUp("Lobisomem");

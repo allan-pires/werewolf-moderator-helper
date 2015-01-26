@@ -16,14 +16,20 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-        <LinearLayout
-        android:orientation="horizontal"
+        <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:screenOrientation="portrait"
-        android:id="@+id/image_view_players">
+        android:id="@+id/image_view_players"
+            android:rowCount="5"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:layout_below="@+id/day_night_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="20dp">
 
-        </LinearLayout>
+        </GridLayout>
 
     <TextView
         android:layout_width="wrap_content"

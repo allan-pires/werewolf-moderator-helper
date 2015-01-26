@@ -1,5 +1,7 @@
 package doistres.werewolf;
 
+import android.widget.ImageView;
+
 /**
  * Created by doisl_000 on 21/01/2015.
  */
@@ -16,6 +18,8 @@ public class Player {
 
     // Indicador de morte
     boolean dead;
+
+    ImageView img;
 
     // Construtor padrão
     Player(){
