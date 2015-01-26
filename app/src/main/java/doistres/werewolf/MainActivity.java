@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -20,7 +22,7 @@ import static android.media.AudioManager.*;
 
 public class MainActivity extends ActionBarActivity {
 
-    private int soundID;
+    static MediaPlayer mMediaPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,14 @@ public class MainActivity extends ActionBarActivity {
         button.setTypeface(amatic);
         button = (Button) findViewById(R.id.exit_button);
         button.setTypeface(amatic);
+
+        // Toca musiquinha
+        mMediaPlayer.stop();
+        mMediaPlayer = MediaPlayer.create(this, R.raw.horror_tale);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
+
     }
 
     @Override
@@ -66,7 +76,8 @@ public class MainActivity extends ActionBarActivity {
 
     // Mata o processo
     public void onBackPressed() {
-
+        mMediaPlayer.release();
+        mMediaPlayer = null;
         android.os.Process.killProcess(android.os.Process.myPid());
         super.onBackPressed();
         // This above line close correctly
@@ -74,6 +85,7 @@ public class MainActivity extends ActionBarActivity {
 
     // Vai para a prox Activity
     public void goToPlayersQuantityActivity(View view) {
+        view.playSoundEffect(android.view.SoundEffectConstants.CLICK);
         Intent intent = new Intent(this, PlayersQuantityActivity.class);
 
         Button button = (Button) findViewById(R.id.new_game_button);
@@ -90,4 +102,5 @@ public class MainActivity extends ActionBarActivity {
         finish();
         System.exit(0);
     }
+
 }

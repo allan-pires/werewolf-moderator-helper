@@ -3,6 +3,8 @@ package doistres.werewolf;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -51,6 +53,14 @@ public class SelectClassesActivity extends ActionBarActivity {
         message = intent.getStringExtra("quantity");
         count = Integer.parseInt(message);
         count -= 3;
+
+        // Toca musiquinha
+        MainActivity.mMediaPlayer.stop();
+        MainActivity.mMediaPlayer = MediaPlayer.create(this, R.raw.catle_run);
+        MainActivity.mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        MainActivity.mMediaPlayer.setLooping(true);
+        MainActivity.mMediaPlayer.start();
+
     }
 
     @Override

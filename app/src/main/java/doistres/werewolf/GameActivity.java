@@ -2,6 +2,8 @@ package doistres.werewolf;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -58,6 +60,14 @@ public class GameActivity extends ActionBarActivity {
         t.setTypeface(amatic);
         t = (TextView) findViewById(R.id.button_next_class);
         t.setTypeface(amatic);
+
+
+        // Toca musiquinha
+        MainActivity.mMediaPlayer.stop();
+        MainActivity.mMediaPlayer = MediaPlayer.create(this, R.raw.horror_ambience);
+        MainActivity.mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        MainActivity.mMediaPlayer.setLooping(true);
+        MainActivity.mMediaPlayer.start();
 
     }
 
@@ -122,6 +132,7 @@ public class GameActivity extends ActionBarActivity {
 
     // Manda acordar determinada classe
     public void wakeUp(String role){
+
         // Cria animacao de texto
         TextView text_role = (TextView) findViewById(R.id.text_class_turn);
         TextView action = (TextView) findViewById(R.id.text_class_objective);
@@ -206,6 +217,14 @@ public class GameActivity extends ActionBarActivity {
     // Inicia o turno matinal
     public void morningTurn(){
 
+        // Toca musiquinha
+        MainActivity.mMediaPlayer.stop();
+        MainActivity.mMediaPlayer = MediaPlayer.create(this, R.raw.quiet_woodlands);
+        MainActivity.mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        MainActivity.mMediaPlayer.setLooping(true);
+        MainActivity.mMediaPlayer.start();
+        MainActivity.mMediaPlayer.setVolume(50, 50);
+
         // Cria animacao de texto
         TextView text_role = (TextView) findViewById(R.id.text_class_turn);
         TextView action = (TextView) findViewById(R.id.text_class_objective);
@@ -228,6 +247,15 @@ public class GameActivity extends ActionBarActivity {
 
     // Inicia o turno da noite
     public void nightTurn(){
+
+        // Toca musiquinha
+        MainActivity.mMediaPlayer.stop();
+        MainActivity.mMediaPlayer = MediaPlayer.create(this, R.raw.horror_ambience);
+        MainActivity.mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        MainActivity.mMediaPlayer.setLooping(true);
+        MainActivity.mMediaPlayer.start();
+        MainActivity.mMediaPlayer.setVolume(100, 100);
+
         // Inicia ponteiros
         TextView text_role = (TextView) findViewById(R.id.text_class_turn);
         TextView action = (TextView) findViewById(R.id.text_class_objective);
