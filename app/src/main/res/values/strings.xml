@@ -9,5 +9,7 @@
     <string name="title_activity_game_setup_confirmation">GameSetupConfirmation</string>
     <string name="title_activity_random_class">RandomClass</string>
     <string name="title_activity_night_turn">NightTurnActivity</string>
+    <string name="class_action_string"><u>Matar um camponês</u></string>
+
 
 </resources>

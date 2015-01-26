@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -34,6 +35,9 @@ public class GameActivity extends ActionBarActivity {
 
     // Contador de dias
     int day_count = 1;
+
+    // Indicador de horário
+    boolean is_night = true;
 
     // Contador de linchamento
     int lynch_count = 0;
@@ -81,6 +85,9 @@ public class GameActivity extends ActionBarActivity {
         t.setTypeface(amatic);
         t = (TextView) findViewById(R.id.button_next_class);
         t.setTypeface(amatic);
+        t = (TextView) findViewById(R.id.vilarejo_status);
+        t.setTypeface(amatic);
+        t.setAlpha(0);
 
 
         // Toca musiquinha
@@ -98,6 +105,12 @@ public class GameActivity extends ActionBarActivity {
         createAllImageListener(players_array);
         GridLayout grid = (GridLayout) findViewById(R.id.image_view_players);
         grid.setAlpha(0);
+
+        // Outras configurações
+        Button action_button = (Button) findViewById(R.id.class_action);
+        action_button.setClickable(false);
+        action_button.setAlpha(0);
+
 
     }
 
@@ -123,10 +136,12 @@ public class GameActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Checa se o jogo acabou
     public boolean isGameOver(){
         if (werewolfs_left >= players_left || werewolfs_left == 0) game_over = true;
         return game_over;
     }
+
     // Seta a quantidade de camponeses restante
     public void setPlayersLeft(ArrayList<Player> p){
         for (int i = 0; i < p.size(); i++){
@@ -276,7 +291,27 @@ public class GameActivity extends ActionBarActivity {
                                     if (p1.role.name.equals("Lobisomem") || p1.role.name.equals("Lobisomem Alfa"))
                                         werewolfs_left--;
                                     else players_left--;
-                                    lynch_count++;
+
+                                    if(isGameOver()) gameOver();
+
+                                    if (is_night){
+                                        GridLayout grid = (GridLayout) findViewById(R.id.image_view_players);
+                                        TextView text_role = (TextView) findViewById(R.id.text_class_turn);
+                                        TextView action = (TextView) findViewById(R.id.text_class_objective);
+                                        Button action_button = (Button) findViewById(R.id.class_action);
+
+                                        grid.setAlpha(0);
+                                        grid.setClickable(false);
+                                        action_button.setClickable(false);
+                                        action_button.setAlpha(0);
+
+                                        text_role.setText("Turno dos Lobisomens");
+                                        action.setText("Os lobisomens dilaceraram um camponês");
+                                    }
+
+                                    else{
+                                        lynch_count++;
+                                    }
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
@@ -299,13 +334,37 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
+    // Acaba o jogo e volta ao menu principal
     public void gameOver(){
-        new AlertDialog.Builder(this)
-                .setMessage("FIM DE JOGO")
-                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+        if (werewolfs_left == 0) {
+            new AlertDialog.Builder(GameActivity.this)
+                    .setMessage("FIM DE JOGO: Os Camponeses sobreviveram!")
+                    .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            goToMainActivity();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+            new AlertDialog.Builder(GameActivity.this)
+                    .setMessage("FIM DE JOGO: Os Lobisomens acabaram com o vilarejo!")
+                    .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            goToMainActivity();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+    }
+
+    // Volta para o menu principal
+    public void goToMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
     // Cria Listener para todas as ImageView
@@ -346,6 +405,7 @@ public class GameActivity extends ActionBarActivity {
         // Cria animacao de texto
         TextView text_role = (TextView) findViewById(R.id.text_class_turn);
         TextView action = (TextView) findViewById(R.id.text_class_objective);
+        Button action_button = (Button) findViewById(R.id.class_action);
         final Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         final Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
@@ -358,6 +418,9 @@ public class GameActivity extends ActionBarActivity {
         // Se for lobisomem
         if (role == "Lobisomem" && !first_night){
             message = "Peça para que os Lobisomens acordem e selecionem uma vítima";
+            action_button.setClickable(true);
+            action_button.setAlpha(1);
+            action_button.startAnimation(fadeIn);
         }
 
         if (role == "Lobisomem Alfa" && !first_night){
@@ -392,6 +455,11 @@ public class GameActivity extends ActionBarActivity {
         Button b = (Button) findViewById(R.id.button_next_class);
         final Animation scale = AnimationUtils.loadAnimation(this, R.anim.scale);
         b.startAnimation(scale);
+
+        Button action_button = (Button) findViewById(R.id.class_action);
+        action_button.setClickable(false);
+        action_button.setAlpha(0);
+
         if (classes_turn.contains("Camponês")) classes_turn.remove("Camponês");
 
         // Se ainda há classes_turn a serem chamadas
@@ -427,6 +495,13 @@ public class GameActivity extends ActionBarActivity {
     // Inicia o turno matinal
     public void morningTurn(){
 
+        // Seta indicador de dia
+        is_night = false;
+
+        // Mostra string
+        TextView t = (TextView) findViewById(R.id.vilarejo_status);
+        t.setAlpha(1);
+
         // Toca musiquinha
         MainActivity.mMediaPlayer.stop();
         MainActivity.mMediaPlayer = MediaPlayer.create(this, R.raw.quiet_woodlands);
@@ -447,6 +522,7 @@ public class GameActivity extends ActionBarActivity {
 
         // Acorda personagem
         grid.setAlpha(1);
+        grid.setClickable(true);
         text_role.setAlpha(0);
         text_day_night.setText("Dia    "+day_count);
         action.setText("");
@@ -456,12 +532,28 @@ public class GameActivity extends ActionBarActivity {
         text_role.startAnimation(fadeIn);
         action.startAnimation(fadeIn);
 
+        // Reseta contador de linchamento
         lynch_count = 0;
+
+        // Coloca os lobisomens disponíveis para linchamento também
+        for (int i = 0; i < players_array.size(); i++){
+            if ((players_array.get(i).role.name.equals("Lobisomem") || players_array.get(i).role.name.equals("Lobisomem Alfa")) && !players_array.get(i).isDead()){
+                players_array.get(i).img.setAlpha((float) 1);
+                players_array.get(i).img.setClickable(true);
+            }
+        }
 
     }
 
     // Inicia o turno da noite
     public void nightTurn(){
+
+        // Seta indicador de noite e de linchamentos
+        is_night = true;
+        lynch_count = 0;
+
+        TextView t = (TextView) findViewById(R.id.vilarejo_status);
+        t.setAlpha(0);
 
         // Toca musiquinha
         MainActivity.mMediaPlayer.stop();
@@ -484,6 +576,7 @@ public class GameActivity extends ActionBarActivity {
 
         // Acorda personagem
         grid.setAlpha(0);
+        grid.setClickable(false);
         text_role.setAlpha(1);
         text_day_night.setText("Noite    "+day_count);
         text_role.setText("E assim... a noite cai");
@@ -578,7 +671,30 @@ public class GameActivity extends ActionBarActivity {
             wakeUp("Silenciador");
             classes_turn.remove("Silenciador");
         }
+    }
+
+    public void goToKillVillager(View view){
+        GridLayout grid = (GridLayout) findViewById(R.id.image_view_players);
+        TextView text_role = (TextView) findViewById(R.id.text_class_turn);
+        TextView action = (TextView) findViewById(R.id.text_class_objective);
+        Button action_button = (Button) findViewById(R.id.class_action);
+
+        grid.setAlpha(1);
+        grid.setClickable(true);
+        text_role.setText("");
+        action.setText("");
+        action_button.setClickable(false);
+        action_button.setAlpha(0);
+
+        for (int i = 0; i < players_array.size(); i++){
+            if (players_array.get(i).role.name.equals("Lobisomem") || players_array.get(i).role.name.equals("Lobisomem Alfa")){
+                players_array.get(i).img.setAlpha((float)0.4);
+                players_array.get(i).img.setClickable(false);
+            }
+        }
 
     }
+
+
 
 }

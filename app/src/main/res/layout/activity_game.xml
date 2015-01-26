@@ -27,7 +27,8 @@
             android:layout_below="@+id/day_night_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            android:layout_marginTop="30dp">
 
         </GridLayout>
 
@@ -72,6 +73,31 @@
         android:layout_alignParentEnd="true"
         android:gravity="bottom"
         android:longClickable="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/class_action_string"
+        android:textSize="24dp"
+        android:id="@+id/class_action"
+        android:background="@android:color/transparent"
+        android:onClick="goToKillVillager"
+        android:textColor="#ffffffff"
+        android:layout_below="@+id/text_class_objective"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Situação do Vilarejo"
+        android:id="@+id/vilarejo_status"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffffff"
+        android:layout_below="@+id/day_night_text"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp" />
 
 
 </RelativeLayout>
