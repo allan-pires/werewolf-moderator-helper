@@ -63,6 +63,30 @@ public class SelectClassesActivity extends ActionBarActivity {
         MainActivity.mMediaPlayer.setLooping(true);
         MainActivity.mMediaPlayer.start();
 
+        // Alerta da quantidade de classes opcionais que podem ser escolhidas
+        int q = quantityToPick();
+        if (q > 1) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Escolha até " + q + " classes opcionais para adicionar ao jogo.")
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else
+            new AlertDialog.Builder(this)
+                    .setMessage("Escolha até " + q + " classe opcional para adicionar ao jogo.")
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
     }
 
     @Override
@@ -196,9 +220,19 @@ public class SelectClassesActivity extends ActionBarActivity {
 
         else {
             int q = quantityToPick();
-
-            new AlertDialog.Builder(this)
-                    .setMessage("Você só pode escolher "+q+" classes opcionais para a quantidade de jogadores indicada!")
+            if (q > 1) {
+                new AlertDialog.Builder(this)
+                        .setMessage("Você só pode escolher " + q + " classes opcionais para a quantidade de jogadores indicada!")
+                        .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+            else new AlertDialog.Builder(this)
+                    .setMessage("Você só pode escolher " + q + " classe opcional para a quantidade de jogadores indicada!")
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
@@ -206,6 +240,7 @@ public class SelectClassesActivity extends ActionBarActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+
         }
     }
 
