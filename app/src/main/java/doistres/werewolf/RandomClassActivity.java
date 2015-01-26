@@ -116,14 +116,16 @@ public class RandomClassActivity extends Activity {
 
             // Remove classe do array
             classes_array.remove(0);
+            if (classes_array.isEmpty()){
+
+                // Mostra o botao para a prox Activity
+                Button button = (Button) findViewById(R.id.button_goToNightTurn);
+                button.setAlpha(1);
+                button.setClickable(true);
+
+            }
         }
         else{
-
-            // Mostra o botao para a prox Activity
-            Button button = (Button) findViewById(R.id.button_goToNightTurn);
-            button.setAlpha(1);
-            button.setClickable(true);
-
             new AlertDialog.Builder(this)
                     .setMessage("Todas as classes já foram escolhidas!")
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
