@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,12 @@ public class GameActivity extends ActionBarActivity {
 
     // Array com os nomes das classe que ainda faltam jogar
     ArrayList<String> classes_turn = new ArrayList<>();
+
+    // Array de todos os jogadores
+    ArrayList<Player> players_array = new ArrayList<>();
+
+    // Array de todas as Views de jogadores
+    ArrayList<ImageView> image_view_players_array =  new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +110,111 @@ public class GameActivity extends ActionBarActivity {
         }
         Collections.sort(array);
         return array;
+    }
+
+    // Cria instância de um jogador
+    public Player createPlayer(Role role){
+        Player p1 = new Player(role);
+        return p1;
+    }
+
+    // Cria instâncias de todos os jogadores
+    public ArrayList<Player> createAllPlayers(){
+        ArrayList<Player> a1 = new ArrayList<>();
+
+        for (int i = 0; i < classes_array.size(); i++){
+            Player p = createPlayer(classes_array.get(i));
+            a1.add(p);
+        }
+
+        return a1;
+    }
+
+    // Cria as Views de jogador na tela
+    public void createPlayerView(Player player){
+        ImageView v1 = new ImageView(this);
+
+        switch (player.role.name) {
+            case "Lobisomem":
+                v1.setImageResource(R.drawable.lobisomem_selected_xhdpi);
+                break;
+            case "Camponês":
+                v1.setImageResource(R.drawable.campones_selected_xhdpi);
+                break;
+            case "Vidente":
+                v1.setImageResource(R.drawable.vidente_selected_xhdpi);
+                break;
+            case "Cupido":
+                v1.setImageResource(R.drawable.cupido_selected_xhdpi);
+                break;
+            case "Caçador":
+                v1.setImageResource(R.drawable.garotinha_selected_xhdpi);
+                break;
+            case "Bruxa":
+                v1.setImageResource(R.drawable.bruxa_selected_xhdpi);
+                break;
+            case "Lobisomem Alfa":
+                v1.setImageResource(R.drawable.lobisomem_alfa_selected_xhdpi);
+                break;
+            case "Traidor":
+                v1.setImageResource(R.drawable.traidor_selected_xhdpi);
+                break;
+            case "Silenciador":
+                v1.setImageResource(R.drawable.silenciador_selected_xhdpi);
+                break;
+            case "Mago":
+                v1.setImageResource(R.drawable.mago_selected_xhdpi);
+                break;
+        }
+
+
+        int overflow = 4;
+        if (image_view_players_array.size() < 4){
+            LinearLayout ll = (LinearLayout) findViewById(R.id.image_view_players);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            //rl.addRule(RelativeLayout.BELOW, R.id.day_night_text);
+            v1.setPadding(25, 25, 0, 0);
+            ll.addView(v1,lp);
+        }
+        else {
+            LinearLayout ll = (LinearLayout) findViewById(R.id.image_view_players);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            //rl.addRule(RelativeLayout.BELOW, R.id.day_night_text);
+            v1.setPadding(25, 25, 0, 0);
+            ll.addView(v1, lp);
+        }
+
+        image_view_players_array.add(v1);
+
+    }
+
+    // Mostra os jogadores na Activity durante o dia
+    public void createAllPlayerViews(ArrayList<Player> players){
+        for (int i = 0; i < players.size(); i++){
+            createPlayerView(players.get(i));
+        }
+    }
+
+    // Cria um Listener para uma ImageView
+    public void createImageViewListener(ImageView v){
+        v.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                v.setAlpha((float)0.3);
+            }
+
+        });
+    }
+
+    // Cria Listener para todas as ImageView
+    public void createAllImageListener(ArrayList<ImageView> v){
+        for (int i = 0; i < v.size(); i++){
+            createImageViewListener(v.get(i));
+        }
     }
 
     // Retorna todas as classes ativas
@@ -243,6 +355,11 @@ public class GameActivity extends ActionBarActivity {
         // Animações
         text_role.startAnimation(fadeIn);
         action.startAnimation(fadeIn);
+
+        // Mostra jogadores
+        players_array = createAllPlayers();
+        createAllPlayerViews(players_array);
+        createAllImageListener(image_view_players_array);
     }
 
     // Inicia o turno da noite
