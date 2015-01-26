@@ -58,11 +58,17 @@
         <activity
             android:name=".GameActivity"
             android:label="@string/title_activity_night_turn"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".RandomClassActivity" >
+            android:parentActivityName=".RandomClassActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="doistres.werewolf.RandomClassActivity" />
+        </activity>
+        <activity
+            android:name=".CreditsActivity"
+            android:label="@string/title_activity_credits"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

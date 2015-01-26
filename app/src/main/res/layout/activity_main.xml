@@ -8,49 +8,71 @@
     android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
-    <Button
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Novo jogo"
-        android:id="@+id/new_game_button"
-        android:background="@android:color/transparent"
-        style="@style/Base.TextAppearance.AppCompat.Large"
-        android:shadowColor="@android:color/transparent"
-        android:textSize="64dp"
-        android:clickable="true"
-        android:layout_above="@+id/options_button"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="goToPlayersQuantityActivity" />
+        android:layout_marginTop="243dp">
 
-    <Button
-        style="@style/Base.TextAppearance.AppCompat.Large"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Opções"
-        android:id="@+id/options_button"
-        android:background="@android:color/transparent"
-        android:shadowColor="@android:color/transparent"
-        android:textSize="64dp"
-        android:clickable="true"
-        android:layout_above="@+id/exit_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Novo jogo"
+            android:id="@+id/new_game_button"
+            android:background="@android:color/transparent"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:shadowColor="@android:color/transparent"
+            android:textSize="64dp"
+            android:clickable="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="goToPlayersQuantityActivity" />
 
-    <Button
-        style="@style/Base.TextAppearance.AppCompat.Large"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Sair"
-        android:id="@+id/exit_button"
-        android:onClick="exitApp"
-        android:background="@android:color/transparent"
-        android:shadowColor="@android:color/transparent"
-        android:textSize="64dp"
-        android:clickable="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="39dp" />
+        <Button
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Opções"
+            android:id="@+id/options_button"
+            android:background="@android:color/transparent"
+            android:shadowColor="@android:color/transparent"
+            android:textSize="64dp"
+            android:clickable="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Créditos"
+            android:id="@+id/credits_button"
+            android:onClick="goToCredits"
+            android:background="@android:color/transparent"
+            android:shadowColor="@android:color/transparent"
+            android:textSize="64dp"
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Sair"
+            android:id="@+id/exit_button"
+            android:onClick="exitApp"
+            android:background="@android:color/transparent"
+            android:shadowColor="@android:color/transparent"
+            android:textSize="64dp"
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </LinearLayout>
 
 </RelativeLayout>

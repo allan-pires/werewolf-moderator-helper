@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff000000"
+    tools:context="doistres.werewolf.CreditsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Developed by Allan Victor"
+            android:id="@+id/credit"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="0dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="doislan@gmail.com"
+            android:id="@+id/credit_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Background by Wey-Han Tan"
+            android:id="@+id/credit1"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="http://blogs.epb.uni-hamburg.de/metagames/2011/10/05/at-last-my-printable-werewolf-game-is-here/"
+            android:id="@+id/credit1_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Characters by Derek"
+            android:id="@+id/credit2"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="http://www.iheartprintandplay.com/iheart-presents-werewolf/"
+            android:id="@+id/credit2_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Music Horror Tale by Play on Loop"
+            android:id="@+id/credit3"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.playonloop.com under the terms of http://creativecommons.org/licenses/by/3.0/legalcode/"
+            android:id="@+id/credit3_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Music Castle Run by Play on Loop"
+            android:id="@+id/credit4"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.playonloop.com under the terms of http://creativecommons.org/licenses/by/3.0/legalcode/"
+            android:id="@+id/credit4_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Music Horror Ambience by Play on Loop"
+            android:id="@+id/credit5"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.playonloop.com under the terms of http://creativecommons.org/licenses/by/3.0/legalcode/"
+            android:id="@+id/credit5_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Music Quiet Woodlands by Play on Loop"
+            android:id="@+id/credit6"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.playonloop.com under the terms of http://creativecommons.org/licenses/by/3.0/legalcode/"
+            android:id="@+id/credit6_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Music Mellow Groove by FULLSCORE"
+            android:id="@+id/credit7"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.freesoundtrackmusic.com"
+            android:id="@+id/credit7_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Synthetic Labyrinth composed by Steve Lowther and produced by C.P.Bryan"
+            android:id="@+id/credit8"
+            android:textColor="#ffffffff"
+            android:layout_marginTop="10dp" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.freesoundtrackmusic.com"
+            android:id="@+id/credit8_source"
+            android:textColor="#ffffffff"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

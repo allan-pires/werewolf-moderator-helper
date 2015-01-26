@@ -40,6 +40,8 @@ public class MainActivity extends ActionBarActivity {
         button.setTypeface(amatic);
         button = (Button) findViewById(R.id.options_button);
         button.setTypeface(amatic);
+        button = (Button) findViewById(R.id.credits_button);
+        button.setTypeface(amatic);
         button = (Button) findViewById(R.id.exit_button);
         button.setTypeface(amatic);
 
@@ -101,6 +103,16 @@ public class MainActivity extends ActionBarActivity {
 
         finish();
         System.exit(0);
+    }
+
+    // Vai para os créditos
+    public void goToCredits(View view){
+        Intent intent = new Intent(this, CreditsActivity.class);
+
+        Button button = (Button) findViewById(R.id.credits_button);
+        button.setTextColor(Color.rgb(119, 1, 1));
+
+        startActivity(intent);
     }
 
 }
