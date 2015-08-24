@@ -1,5 +1,10 @@
 # Werewolf para Android
+
+## Descrição
 Aplicativo para auxiliar o narrador do jogo Lobisomem, que por ventura esqueça as classes existentes ou como anda o fluxo do jogo.
+
+## Informações do Jogo
+Werewolf é o jogo festivo final para qualquer lugar de 5 a 68 jogadores. Cada jogador tem um enredo: como um aldeão, caçar os lobisomens, como um lobisomem, convencer os outros aldeões que você é inocente, enquanto secretamente janta esses mesmos moradores todas as noites. Dezenas de papéis especiais estão disponíveis para ajudar os moradores e os lobisomens a atingir seus objetivos enquanto frustra seus oponentes.
 
 ## Imagens do aplicativo
 ![alt tag](http://i.imgur.com/C8Q6TJO.png)
