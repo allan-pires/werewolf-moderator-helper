@@ -1,6 +1,9 @@
 # Werewolf para Android
 Aplicativo para auxiliar o narrador do jogo Lobisomem, que por ventura esqueça as classes existentes ou como anda o fluxo do jogo.
 
+## Imagens do aplicativo
+![alt tag](http://i.imgur.com/C8Q6TJO.png)
+
 ## Classes
 - [CreditsActivity](https://github.com/doisLan/Werewolf-Android/blob/master/app/src/main/java/doistres/werewolf/CreditsActivity.java): View de créditos
 - [GameActivity](https://github.com/doisLan/Werewolf-Android/blob/master/app/src/main/java/doistres/werewolf/GameActivity.java): View do jogo
